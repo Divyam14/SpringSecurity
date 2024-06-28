@@ -2,6 +2,7 @@ package com.example.securitydemo;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -14,6 +15,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
     @Bean
@@ -38,7 +40,7 @@ public class SecurityConfig {
 
         UserDetails admin = User.withUsername("admin")
                 .password("{noop}Password2")
-                .roles("USER")
+                .roles("ADMIN")
                 .build();
         return  new InMemoryUserDetailsManager(user1,admin);
     }
